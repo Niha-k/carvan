@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Specialist - Product Details</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+        }
+
+        .product-container {
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .product-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .product-description {
+            color: #555;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+
+        .product-price {
+            font-size: 24px;
+            color: #e60000;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        .quantity-container {
+            margin-top: 20px;
+        }
+
+        .quantity-label {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 0 10px;
+        }
+
+        .button {
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        .add-to-cart {
+            background-color: #f0eee9;
+            color: rgb(61, 43, 43);
+            border: none;
+        }
+
+        .add-to-cart:hover {
+            background-color: #e68900;
+        }
+
+        .buy-now {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+        }
+
+        .buy-now:hover {
+            background-color: #003d80;
+        }
+
+        .product-buttons {
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .product-container {
+                padding: 15px;
+            }
+
+            .product-title {
+                font-size: 28px;
+            }
+
+            .product-price {
+                font-size: 20px;
+            }
+
+            .button {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10 col-sm-12 product-container">
+            <div class="row">
+                <!-- Product Image -->
+                <div class="col-md-5 product-image">
+                    <img src="./../../New images/apolo.webp" alt="Product Image">
+                </div>
+                <!-- Product Details -->
+                <div class="col-md-7">
+                    <h2 class="product-title">Card Specialist Premium Card</h2>
+                    <p class="product-description">
+                        Discover the ultimate card solution for your needs. This premium card offers exclusive benefits, enhanced security features, and a sleek design. Ideal for professionals and enthusiasts, it provides unrivaled service and access.
+                    </p>
+                    <div class="product-price">
+                        Total Price: $<span id="totalPrice">30.00</span>
+                    </div>
+                    
+                    <!-- Quantity Selection -->
+                    <div class="quantity-container">
+                        <span class="quantity-label">Quantity:</span>
+                        <input type="number" id="productQuantity" class="quantity-input" min="1" value="1">
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="product-buttons">
+                        <button class="button add-to-cart" id="addToCart">Add to Cart</button>
+                        <button class="button buy-now" id="buyNow">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery, Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    const pricePerItem = 30.00; // Base price of the product
+
+    // Function to update the total price based on quantity
+    function updatePrice() {
+        const quantity = $('#productQuantity').val();
+        const totalPrice = (pricePerItem * quantity).toFixed(2); // Calculate total price
+        $('#totalPrice').text(totalPrice); // Update the price display
+    }
+
+    // Event listener for quantity input change
+    $('#productQuantity').on('input', function() {
+        updatePrice();
+    });
+
+    // Add to Cart functionality
+    $('#addToCart').click(function() {
+        const quantity = $('#productQuantity').val();
+        const totalPrice = (pricePerItem * quantity).toFixed(2);
+        alert(`Added ${quantity} item(s) to the cart! Total price: $${totalPrice}`);
+        $(this).hide();
+    });
+
+    // Buy Now functionality
+    $('#buyNow').click(function() {
+        const quantity = $('#productQuantity').val();
+        const totalPrice = (pricePerItem * quantity).toFixed(2);
+        alert(`Proceeding to checkout with ${quantity} item(s). Total price: $${totalPrice}`);
+$(this).text("Proceed");
+$(this).css("background-color","yellow");
+$(this).css("color","black");
+
+    });
+</script>
+</body>
+</html>
